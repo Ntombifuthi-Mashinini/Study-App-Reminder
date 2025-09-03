@@ -1,9 +1,18 @@
-const subject = document.querySelector('#subject').value
-const time = document.querySelector('#time').value
+const addBtn = document.querySelector('#addBtn')
+const subjectInput = document.querySelector('#subject')
+const timeInput = document.querySelector('#time')
+const remindersList = document.querySelector('#reminders')
+const errorMsg = document.querySelector('#error')
 
-if (time === "") {
-  document.querySelector('#error').innerHTML = "Please enter a time"
-} else {
+function addReminder() {
+  const subject = subjectInput.value
+  const time = timeInput.value
+
+  if (time === "") {
+    errorMsg.innerHTML = "Please enter a time"
+    return
+  }
+
   const reminderString = `${subject} at ${time}`
 
   const li = document.createElement('li')
@@ -17,13 +26,14 @@ if (time === "") {
   }
 
   li.appendChild(delBtn)
+  remindersList.appendChild(li)
 
-  document.querySelector('#reminders').appendChild(li)
-
-  document.querySelector('#error').innerHTML = ""
-  
-  document.querySelector('#subject').value = ""
-  document.querySelector('#time').value = ""
+  errorMsg.innerHTML = ""
+  subjectInput.value = ""
+  timeInput.value = ""
 }
+
+addBtn.addEventListener('click', addReminder)
+
 
 
