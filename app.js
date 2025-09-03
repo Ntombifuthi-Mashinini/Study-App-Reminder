@@ -9,6 +9,15 @@ if (time === "") {
   const li = document.createElement('li')
   li.textContent = reminderString
 
+  const delBtn = document.createElement('button')
+  delBtn.textContent = "Delete"
+  
+  delBtn.onclick = function() {
+    li.remove()
+  }
+
+  li.appendChild(delBtn)
+
   document.querySelector('#reminders').appendChild(li)
 
   document.querySelector('#error').innerHTML = ""
@@ -16,4 +25,5 @@ if (time === "") {
   document.querySelector('#subject').value = ""
   document.querySelector('#time').value = ""
 }
+
 
